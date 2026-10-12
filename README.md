@@ -117,7 +117,9 @@ python3 evaluation/evaluate.py
 INFERENCE_PROVIDER=mac_local LOCAL_MODEL_NAME=qwen2.5:1.5b python3 backend/run.py
 ```
 
-目前核心問答仍由 deterministic evidence layer 保證；provider health 會顯示在隱私頁。連線失敗不會 fallback 到雲端。
+啟用後，新加入且帶有時間線索的計劃訊息會由本機 Qwen 抽取活動與時間，保存時仍以原始訊息為準；查詢計劃時先比對發言者和日期，再附原文引用回答。大量匯入及既有訊息的候選計劃會在背景逐步抽取，避免讓匯入等待模型處理每一筆。可用 `GET /api/conversations/{id}/plans` 查看已抽取結果；若本機模型暫時離線，未處理的舊訊息會在下次啟動或重建索引時重試。其他問答仍使用現有檢索與證據驗證流程。連線失敗不會 fallback 到雲端。
+
+目前計劃日期支援「今天／明天／後天／本週／下週」等相對說法；更複雜日期、跨訊息指代及多輪修正尚未完整處理。`llm_used=true` 且 `llm_stage=plan_extraction` 表示模型用於抽取輸入，答案由程式依已驗證的抽取結果組成。
 
 ## 離線測試
 

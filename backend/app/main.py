@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 import os
 import platform
+import queue
 import subprocess
 import threading
 import time
@@ -23,6 +24,7 @@ from .importers import LineTxtImporter
 from .inference import DeterministicStubProvider
 from .inference.mac_local import MacLocalProvider
 from .memory import MemoryExtractor
+from .memory.local_plan import LocalPlanExtractor, is_backfill_candidate, time_window
 from .profiler import PipelineProfiler
 
 
@@ -52,6 +54,10 @@ def create_app(database_path: str | Path | None = None, static_dir: str | Path |
     extractor = MemoryExtractor()
     previews: dict[str, dict] = {}
     provider = MacLocalProvider(settings.local_model_base_url, settings.local_model_name) if settings.inference_provider == "mac_local" else DeterministicStubProvider()
+    plan_extractor = LocalPlanExtractor(provider)
+    plan_queue: queue.Queue[str] = queue.Queue()
+    queued_plan_ids: set[str] = set()
+    plan_queue_lock = threading.Lock()
     profiler = PipelineProfiler()
     capture_lock = threading.Lock()
     capture_state = {"process": None, "conversation_id": None, "state": "stopped", "frames": 0,
@@ -121,6 +127,57 @@ def create_app(database_path: str | Path | None = None, static_dir: str | Path |
         profiler.record("memory_extraction", (time.monotonic() - started) * 1000)
         return {"memory_count": len(facts), "commitment_count": len(commitments)}
 
+    def extract_plan(message_id: str, cache: dict | None = None):
+        message = repo.message(message_id)
+        if not message:
+            return
+        key = (message["sender"], message["content"])
+        started = time.monotonic()
+        try:
+            if cache is not None and key in cache:
+                plan = cache[key]
+                if plan and plan["time_expression"]:
+                    observed = datetime.fromisoformat(message["timestamp"].replace("Z", "+00:00"))
+                    interval = time_window(plan["time_expression"], observed)
+                    plan = {**plan, "start_date": interval[0] if interval else None,
+                            "end_date": interval[1] if interval else None}
+            else:
+                plan = plan_extractor.extract(message)
+                if cache is not None:
+                    cache[key] = plan
+            repo.save_plan_extraction(message, settings.local_model_name, plan)
+            profiler.record("model_plan_extraction", (time.monotonic() - started) * 1000)
+        except Exception:
+            # Ollama may be offline. Leave the message pending for a later restart/reindex.
+            pass
+
+    def schedule_plan_backfill():
+        if not getattr(provider, "supports_generation", False):
+            return
+        for message in repo.pending_plan_messages(settings.local_model_name):
+            if not is_backfill_candidate(message["content"]):
+                continue
+            with plan_queue_lock:
+                if message["id"] in queued_plan_ids:
+                    continue
+                queued_plan_ids.add(message["id"])
+            plan_queue.put(message["id"])
+
+    def plan_worker():
+        cache: dict[tuple[str, str], dict | None] = {}
+        while True:
+            message_id = plan_queue.get()
+            try:
+                extract_plan(message_id, cache)
+            finally:
+                with plan_queue_lock:
+                    queued_plan_ids.discard(message_id)
+                plan_queue.task_done()
+
+    if getattr(provider, "supports_generation", False):
+        threading.Thread(target=plan_worker, name="local-plan-extraction", daemon=True).start()
+        schedule_plan_backfill()
+
     @app.get("/api/health")
     def health(): return {"status": "ok"}
 
@@ -132,6 +189,7 @@ def create_app(database_path: str | Path | None = None, static_dir: str | Path |
         cid = repo.create_conversation("Alice 與小宇", "synthetic_demo", "synthetic-line-chat.txt", settings.default_timezone, "demo-alice")
         inserted, _ = repo.insert_messages(cid, generate_messages())
         detail = analyze(cid)
+        schedule_plan_backfill()
         return {"conversation_id": cid, "inserted": inserted, "message_count": inserted, **detail}
 
     @app.post("/api/imports/line/preview")
@@ -157,6 +215,7 @@ def create_app(database_path: str | Path | None = None, static_dir: str | Path |
         cid = existing["id"] if existing else repo.create_conversation(parsed["title"], "line_txt", parsed["source_filename"], parsed["timezone"])
         inserted, _ = repo.insert_messages(cid, parsed["messages"] + parsed.get("unknown_messages", []))
         detail = analyze(cid)
+        schedule_plan_backfill()
         jid = repo.create_job("line_import", detail={"conversation_id": cid, "inserted": inserted, **detail})
         return {"job_id": jid, "conversation_id": cid, "inserted": inserted, "deduplicated": bool(existing and inserted == 0), **detail}
 
@@ -196,18 +255,26 @@ def create_app(database_path: str | Path | None = None, static_dir: str | Path |
             raise HTTPException(409, "duplicate_message")
         profiler.record("ingestion_index", (time.monotonic() - started) * 1000, "messages_ingested")
         detail = analyze(conversation_id)
+        if getattr(provider, "supports_generation", False) and is_backfill_candidate(payload.content):
+            extract_plan(ids[0])
         return {"message": repo.message(ids[0]), **detail}
 
     @app.post("/api/conversations/{conversation_id}/index")
     def index_conversation(conversation_id: str):
         ensure_conversation(conversation_id)
         detail = analyze(conversation_id)
+        schedule_plan_backfill()
         jid = repo.create_job("index", detail={"conversation_id": conversation_id, **detail})
         return {"job_id": jid, **detail}
 
     @app.get("/api/conversations/{conversation_id}/memories")
     def memories(conversation_id: str):
         ensure_conversation(conversation_id);return repo.facts(conversation_id)
+
+    @app.get("/api/conversations/{conversation_id}/plans")
+    def plans(conversation_id: str):
+        ensure_conversation(conversation_id)
+        return repo.inferred_plans(conversation_id, limit=100)
 
     @app.get("/api/conversations/{conversation_id}/changes")
     def changes(conversation_id: str):

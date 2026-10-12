@@ -39,6 +39,18 @@ CREATE TABLE IF NOT EXISTS memory_sources (
   message_id TEXT NOT NULL REFERENCES messages(id) ON DELETE CASCADE,
   PRIMARY KEY(memory_id, message_id)
 );
+CREATE TABLE IF NOT EXISTS inferred_plans (
+  source_message_id TEXT PRIMARY KEY REFERENCES messages(id) ON DELETE CASCADE,
+  conversation_id TEXT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
+  subject TEXT NOT NULL, activity TEXT NOT NULL, time_expression TEXT NOT NULL,
+  start_date TEXT, end_date TEXT, extracted_at TEXT NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_inferred_plans_lookup ON inferred_plans(conversation_id, subject, start_date);
+CREATE TABLE IF NOT EXISTS plan_extractions (
+  message_id TEXT NOT NULL REFERENCES messages(id) ON DELETE CASCADE,
+  model_name TEXT NOT NULL, processed_at TEXT NOT NULL,
+  PRIMARY KEY(message_id, model_name)
+);
 CREATE TABLE IF NOT EXISTS commitments (
   id TEXT PRIMARY KEY, conversation_id TEXT NOT NULL REFERENCES conversations(id) ON DELETE CASCADE,
   who TEXT NOT NULL, action TEXT NOT NULL, due_date TEXT, status TEXT NOT NULL,
@@ -184,6 +196,55 @@ class Repository:
     def commitments(self, conversation_id: str) -> list[dict]:
         with self.connect() as db: rows=db.execute("SELECT * FROM commitments WHERE conversation_id=? ORDER BY rowid",(conversation_id,)).fetchall()
         return [dict(r) for r in rows]
+
+    def participants(self, conversation_id: str) -> list[str]:
+        with self.connect() as db:
+            rows = db.execute("SELECT DISTINCT sender FROM messages WHERE conversation_id=?", (conversation_id,)).fetchall()
+        return [row[0] for row in rows if row[0] not in {"unknown", "system"}]
+
+    def pending_plan_messages(self, model_name: str, limit: int = 100000) -> list[dict]:
+        with self.connect() as db:
+            rows = db.execute(
+                """SELECT m.* FROM messages m LEFT JOIN plan_extractions p
+                   ON p.message_id=m.id AND p.model_name=?
+                   WHERE p.message_id IS NULL AND m.type='text'
+                   ORDER BY m.timestamp DESC LIMIT ?""",
+                (model_name, limit),
+            ).fetchall()
+        return [self._message(row) for row in rows]
+
+    def save_plan_extraction(self, message: dict, model_name: str, plan: dict | None) -> None:
+        now = datetime.now().astimezone().isoformat()
+        with self.connect() as db:
+            db.execute("DELETE FROM inferred_plans WHERE source_message_id=?", (message["id"],))
+            if plan:
+                db.execute(
+                    """INSERT INTO inferred_plans
+                       (source_message_id,conversation_id,subject,activity,time_expression,start_date,end_date,extracted_at)
+                       VALUES(?,?,?,?,?,?,?,?)""",
+                    (message["id"], message["conversation_id"], message["sender"], plan["activity"],
+                     plan["time_expression"], plan["start_date"], plan["end_date"], now),
+                )
+            db.execute(
+                "INSERT OR REPLACE INTO plan_extractions(message_id,model_name,processed_at) VALUES(?,?,?)",
+                (message["id"], model_name, now),
+            )
+
+    def inferred_plans(self, conversation_id: str, subject: str | None = None,
+                       interval: tuple[str, str] | None = None, limit: int = 20) -> list[dict]:
+        query = "SELECT p.* FROM inferred_plans p JOIN messages m ON m.id=p.source_message_id WHERE p.conversation_id=?"
+        params: list = [conversation_id]
+        if subject:
+            query += " AND p.subject=?"
+            params.append(subject)
+        if interval:
+            query += " AND p.start_date<? AND p.end_date>?"
+            params.extend((interval[1], interval[0]))
+        query += " ORDER BY m.timestamp DESC LIMIT ?"
+        params.append(limit)
+        with self.connect() as db:
+            rows = db.execute(query, params).fetchall()
+        return [dict(row) for row in rows]
 
     def fts_search(self, conversation_id: str, query: str, limit: int = 10) -> list[dict]:
         terms = [x for x in query.replace("？", " ").replace("?", " ").split() if x]
