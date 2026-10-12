@@ -231,7 +231,7 @@ def create_app(database_path: str | Path | None = None, static_dir: str | Path |
     def query(conversation_id: str, payload: QueryPayload):
         ensure_conversation(conversation_id)
         started = time.monotonic()
-        result = AnswerService(repo).answer(conversation_id, payload.question)
+        result = AnswerService(repo, provider).answer(conversation_id, payload.question)
         profiler.record("retrieval_answer", (time.monotonic() - started) * 1000)
         return result
 
