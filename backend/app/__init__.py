@@ -1,0 +1,2 @@
+"""RecallSidecar application package."""
+

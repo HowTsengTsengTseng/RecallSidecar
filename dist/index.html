@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="聊憶 RecallSidecar - 本機、可追溯的聊天記憶 demo" />
+    <title>聊憶 RecallSidecar</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <a class="brand" href="#" data-route="conversations" aria-label="聊憶首頁">
+          <span class="brand-mark">憶</span>
+          <span><strong>聊憶</strong><small>RecallSidecar</small></span>
+        </a>
+        <nav id="nav" aria-label="主要導覽">
+          <button data-route="conversations" class="active"><span>▦</span> 對話</button>
+          <button data-route="recall"><span>⌕</span> 回想</button>
+          <button data-route="changes"><span>↝</span> 變更紀錄</button>
+          <button data-route="commitments"><span>✓</span> 承諾</button>
+          <button data-route="demo-chat"><span>◌</span> Demo Chat</button>
+          <button data-route="capture"><span>◉</span> Live Capture</button>
+          <button data-route="privacy"><span>◇</span> 隱私</button>
+        </nav>
+        <div class="local-badge"><i></i><span><strong>本機模式</strong><small>資料不離開此瀏覽器</small></span></div>
+      </aside>
+
+      <main>
+        <header class="topbar">
+          <div><span class="eyebrow" id="eyebrow">LOCAL MEMORY ENGINE</span><h1 id="page-title">對話</h1></div>
+          <div class="provider-pill"><span></span> Deterministic Stub · Offline</div>
+        </header>
+        <div id="toast" role="status" aria-live="polite"></div>
+        <div id="capture-banner" hidden style="position:sticky;top:0;z-index:10;margin:12px 24px;padding:12px 16px;border:1px solid #b57b30;border-radius:12px;background:#fff2d9;color:#553700;font-weight:700"><span id="capture-banner-label">正在擷取已選擇視窗</span> <button id="capture-banner-stop" class="btn danger">停止擷取</button></div>
+        <section id="view" tabindex="-1"></section>
+      </main>
+    </div>
+
+    <dialog id="import-dialog">
+      <form method="dialog" class="dialog-card">
+        <div class="dialog-head"><div><span class="eyebrow">LINE TXT IMPORT</span><h2>匯入對話紀錄</h2></div><button class="icon-btn" value="cancel" aria-label="關閉">×</button></div>
+        <div id="import-step-upload">
+          <label class="dropzone" id="dropzone">
+            <input id="file-input" type="file" accept=".txt,text/plain" />
+            <span class="upload-icon">↥</span><strong>拖放 LINE .txt 檔案到這裡</strong><small>或點此選擇檔案 · 最大 8 MB · 僅在本機解析</small>
+          </label>
+        </div>
+        <div id="import-preview" hidden></div>
+      </form>
+    </dialog>
+
+    <dialog id="confirm-dialog">
+      <form method="dialog" class="confirm-card">
+        <span class="danger-icon">!</span><h2 id="confirm-title">確認刪除？</h2><p id="confirm-copy"></p>
+        <div class="dialog-actions"><button value="cancel" class="btn secondary">取消</button><button id="confirm-action" value="default" class="btn danger">刪除</button></div>
+      </form>
+    </dialog>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,852 @@
+[
+  {
+    "id": "q001",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q002",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q003",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q004",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q005",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q006",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q007",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q008",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q009",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q010",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q011",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q012",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q013",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q014",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q015",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q016",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q017",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q018",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q019",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q020",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q021",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q022",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q023",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q024",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q025",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q026",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q027",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q028",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q029",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q030",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q031",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q032",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q033",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q034",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q035",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q036",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q037",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q038",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q039",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q040",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q041",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q042",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q043",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q044",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q045",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q046",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q047",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q048",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q049",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q050",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q051",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q052",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q053",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q054",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q055",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q056",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q057",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q058",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q059",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q060",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q061",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q062",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q063",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q064",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q065",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q066",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q067",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q068",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q069",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q070",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q071",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q072",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q073",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q074",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q075",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q076",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q077",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q078",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q079",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q080",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q081",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q082",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q083",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q084",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q085",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q086",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q087",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q088",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q089",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q090",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q091",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q092",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q093",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q094",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q095",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q096",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  },
+  {
+    "id": "q097",
+    "question": "Alice 現在可以吃辣嗎？",
+    "expected_status": "supported",
+    "expected_concept": "小辣",
+    "expected_source_message_ids": [
+      "msg-4217"
+    ]
+  },
+  {
+    "id": "q098",
+    "question": "下週哪天沒空？",
+    "expected_status": "supported",
+    "expected_concept": "三",
+    "expected_source_message_ids": [
+      "msg-2140"
+    ]
+  },
+  {
+    "id": "q099",
+    "question": "生日旅行去哪？",
+    "expected_status": "supported",
+    "expected_concept": "花蓮",
+    "expected_source_message_ids": [
+      "msg-4550"
+    ]
+  },
+  {
+    "id": "q100",
+    "question": "Alice 的貓叫什麼？",
+    "expected_status": "not_found",
+    "expected_concept": null,
+    "expected_source_message_ids": []
+  }
+]
